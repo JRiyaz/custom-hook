@@ -17,6 +17,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     stmt = f'{filename}:{i} -> print statement found'
                     print(stmt)
                     ret_code.append(stmt)
+    print("Use logging instead of printing")
     return bool(ret_code)
 
 
