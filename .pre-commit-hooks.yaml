@@ -1,0 +1,12 @@
+- id: check-print-statement
+  name: Check print statement
+  description: prevent print statements in source code
+  entry: check-print-statement
+  language: python
+  types: [ python ]
+- id: check-hello
+  name: check hello
+  description: simply prints hello
+  entry: check-hello
+  language: python
+  types: [ python ]
