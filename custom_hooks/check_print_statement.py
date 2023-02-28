@@ -28,7 +28,7 @@ def check_file_for_print(file_contents):
 
     for node in ast.walk(tree):
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "print":
-            if not (is_in_docstring(node) or is_in_comment(file_contents, node)):
+            if not (is_in_docstring(node) or is_in_comment(file_contents, node.lineno)):
                 return True
 
     return False
@@ -44,12 +44,13 @@ def is_in_docstring(node):
     return False
 
 
-def is_in_comment(file_contents, node):
+def is_in_comment(file_contents, line_number):
     """
-    Check if a node is within a comment
+    Check if a line_number is within a comment
     """
-    comment_start = node.lineno - 1
-    for line in file_contents.split('\n')[:comment_start]:
+    for i, line in enumerate(file_contents.split('\n')):
+        if i >= line_number-1:
+            break
         if line.strip().startswith('#'):
             return True
     return False
