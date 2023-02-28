@@ -6,8 +6,8 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'check-hello = custom_hooks.check-hello',
-            'check-print-statement = custom_hooks.check-print-statement'
+            'check-hello = custom_hooks.check_hello',
+            'check-print-statement = custom_hooks.check_print_statement'
         ]
     },
     install_requires=[],
