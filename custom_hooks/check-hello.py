@@ -4,6 +4,7 @@ from typing import Sequence
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    print(argv)
     print("Hello there! Welcome to Pre Commit!")
     return 0
 
