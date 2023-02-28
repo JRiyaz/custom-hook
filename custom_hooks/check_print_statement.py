@@ -19,7 +19,6 @@
 #                     ret_code.append(stmt)
 #     print("Use logging instead of printing")
 #     return bool(ret_code)
-
 import ast
 import sys
 
@@ -28,7 +27,7 @@ def check_file_for_print(file_contents):
     tree = ast.parse(file_contents)
 
     for node in ast.walk(tree):
-        if isinstance(node, ast.Print):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "print":
             if not (is_in_docstring(node) or is_in_comment(file_contents, node)):
                 return True
 
@@ -39,7 +38,8 @@ def is_in_docstring(node):
     """
     Check if a node is within a docstring
     """
-    if isinstance(node.parent, ast.Expr) and isinstance(node.parent.value, ast.Str):
+    if isinstance(node.parent, ast.Expr) and \
+            isinstance(node.parent.value, ast.Str):
         return True
     return False
 
